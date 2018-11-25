@@ -1,3 +1,14 @@
+AUTH:
+###########
+/auth
+request body
+{
+    email
+    password
+}
+
+
+
 GAME:
 
 ###########

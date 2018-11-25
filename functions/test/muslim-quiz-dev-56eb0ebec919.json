@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "muslim-quiz-dev",
+  "private_key_id": "56eb0ebec9190805012cd82efc9424503474ce9d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDK7v/zstKtfgkV\nQw8Giyj5w/fDEZJJkUMeGx2e1TMxyV0V5t6RiOr9zug9qjrgDH00rt8MJE8dxM3c\nH5JzJ4Gn+afI8HjFEEU6c4EoVYrX8QYDKDmbXLPKxHRStIgDz6R6FoBd1Recd7Lk\nH/t5SPVBOrSoriKUcRCkBEoSHl1dUFS+EMyh89NManQuKkdxPZvtLthJf+q8F7xG\nqE5XghIIj35k+woaKvGmwMBeVjN+JCkba4IKkQTRIpG2x+abPC7Pnh+KmQLMLyBC\nmhWbrVGXzm2yOnk9Q6T41ZBsZiSucqDd/u/hwiJBiKFr0FAzzO1BTwZUP9GpeQtG\nlbt28jEbAgMBAAECggEASPH3LBzT8QwUbMGhlYsRLBKerU5UJMCj/R7nG1BsqhFF\nNhm6WFr8iUZGIeBecGnc2cKgJ4enrr4u91ib9mu1hfFOOAMEjmWGVPfu7dYt5ehb\n7meXqXp9oD3UyGPfXmtVppMPCmuOJK68LZc3eEXa7tsQ1G9fu7cWsbZe/7tNeTxC\ndKFEp8uQZJqDRMXb4IQoJw+kwBZpljSUU/7RIf9Mhg5pjXCx8etJV+QbyODFQFyI\nDu9Uho8Q+XaABdFeHsI08cUkOSGH0AgL2fXLOZtetkWf90GftRPxcYbR228i3iAW\nFi277pYe2cPv+wxJ/eRe4pAbx9dVR93saitnKf/1EQKBgQDtHYdeDTtSUxRM79Yd\nLwvRlDLBwyp9Ll6zqk3LlubfIao0h9z+l5BJMYkU559Zy/P9YVKgTHQZ/DKlcxe6\nin/eoRBUtO+tyIgeQoj085Xcx/Z73E0GqFcfGFbDQ9UitvrDBPOoWI2p+bX1lZy7\nQxVoi0fqe7Lm+VaIlMd8bmphSwKBgQDbGIzD2S+gSRXSZsenHHggG5leV6h2BIqC\n83C6HGwpIlE3+mxMt26CBO82Q1LQAxh1tyisCfromSnT+SAQrdj3pJtdhS1wDmKV\nuJvzqw6qtfcpvgvX0nvm/CpT7FM8eM7fA14eGhgvBCwswgNXtqfk38ShpY+mAvz9\nMpIvm89dcQKBgE3WpbuASHsL/twK15UY/p48MjVdZjNV54y/WW5+CSgymvdHqoqB\nIsKEWmXca3lE9MG3EzLAJlTpb47Uq3N3R+bDpOLJyuyXqeeVG/SdihLCKe4bMcX/\nuSniCYlsWSlePA+NLpeTCl5ENTF7fcoTiZGaN2+IUAB21atce+gjLxTlAoGAEmdY\ng6b9sigRdi/9+1KP4JqQ4nTYiLlO7TsHsAptJ3NjgSE+8Z7C4JcLhPJYxXJNHq44\n82KPOfSLp+uYPu5reDnSdyOVsoDy1QLBztEClWJdlZsKIaHjmH58C7qhL0YyklcV\nE9A7Uc+26jeN0lNcfQQy3yUqENbVa2tRDkC3RXECgYEA7AqjbOJtDyA6thAMSG2R\nD06hwzS7jkmFm4t5E2KX9VOQF3BkprwqrcVryKmNG+04vtOYMPypon1XCUiSXznC\nQDawGxuU/wUlW50A3rem66l0T6E/iAccQMCBPafeILohqkRask5JMrM+FnUogIJZ\nrpOYlebyhLb7Vgbg+HZU6SM=\n-----END PRIVATE KEY-----\n",
+  "client_email": "muslim-quiz-dev@appspot.gserviceaccount.com",
+  "client_id": "118082234310299281577",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/muslim-quiz-dev%40appspot.gserviceaccount.com"
+}

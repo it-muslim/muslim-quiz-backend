@@ -4,19 +4,14 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp();
 
-exports.helloWorld = functions.https.onRequest((request, response) => {
- response.send("Hello from Firebase!");
-});
-
-// Take the text parameter passed to this HTTP endpoint and insert it into the
-// Realtime Database under the path /messages/:pushId/original
-exports.addMessage = functions.https.onRequest((req, res) => {
-    // Grab the text parameter.
-    const original = req.query.text;
-    // Push the new message into the Realtime Database using the Firebase Admin SDK.
-    return admin.database().ref('/messages').push({original: original}).then((snapshot) => {
-        // Redirect with 303 SEE OTHER to the URL of the pushed object in the Firebase console.
-        return res.redirect(303, snapshot.ref.toString());
-    });
-});
+exports.auth = functions.https.onRequest((req, res) => {
+        const email = req.query.email;
+        const password = req.query.password;
+        console.log('Logging in via email', email)
+        return admin.database().ref('/users').push({email: email, password: password}).then((snapshot) => {
+            // Redirect with 303 SEE OTHER to the URL of the pushed object in the Firebase console.
+            console.log('Redirecting with status 303 to', snapshot.ref.toString())
+            return res.redirect(303, snapshot.ref.toString());
+        });
+    })
 
