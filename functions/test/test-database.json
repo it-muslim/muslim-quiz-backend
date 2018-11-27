@@ -1,0 +1,70 @@
+{
+  "topics" : {
+    "test_topic" : {
+      "name" : "Арабский язык",
+      "questions" : {
+        "test_question1" : {
+          "answers" : {
+            "test_answer1" : {
+              "content" : {
+                "text" : "Ответ 1.1"
+              }
+            },
+            "test_answer2" : {
+              "content" : {
+                "text" : "Ответ 1.2"
+              }
+            },
+            "test_answer3" : {
+              "content" : {
+                "text" : "Ответ 1.3"
+              }
+            }
+          },
+          "name" : "Вопрос по арабскому языку"
+        },
+        "test_question2" : {
+          "answers" : {
+            "test_answer1" : {
+              "content" : {
+                "text" : "Ответ 2.1"
+              }
+            },
+            "test_answer2" : {
+              "content" : {
+                "text" : "Ответ 2.2"
+              }
+            },
+            "test_answer3" : {
+              "content" : {
+                "text" : "Ответ 2.3"
+              }
+            }
+          },
+          "name" : "Вопрос по арабскому языку"
+        }
+        ,
+        "test_question3" : {
+          "answers" : {
+            "test_answer1" : {
+              "content" : {
+                "text" : "Ответ 3.1"
+              }
+            },
+            "test_answer2" : {
+              "content" : {
+                "text" : "Ответ 3.2"
+              }
+            },
+            "test_answer3" : {
+              "content" : {
+                "text" : "Ответ 3.3"
+              }
+            }
+          },
+          "name" : "Вопрос по арабскому языку"
+        }
+      }
+    }
+  }
+}

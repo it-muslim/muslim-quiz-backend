@@ -4,8 +4,8 @@ const admin = require('firebase-admin'); admin.initializeApp();
 const db = admin.database();
 
 function generateQuiz() {
-    const quizRef = db.ref('/quizzes');
-    return quizRef.once('value').then( (snapshot) => {
+    const topicsRef = db.ref('/topics');
+    return topicsRef.once('value').then( (snapshot) => {
         const numberOfQuizzes = snapshot.numChildren();
         const randomIndex = Math.floor(Math.random() * numberOfQuizzes);
         return snapshot.val()[randomIndex]
@@ -73,4 +73,11 @@ exports.start_dame = functions.https.onRequest((req, res) => {
         const roundJSON = snapshot.toJSON();
         return res.status(200).json({ key: snapshot.key, round: roundJSON });
     })
+});
+
+exports.answer_quiz = functions.https.onRequest((req, res) => {
+    // const userId = req.query.user_id;
+    // const roundId = req.query.round_id;
+    // const answerId = req.query.answer_id;
+    return res.status(200).json({ correct: true });
 });

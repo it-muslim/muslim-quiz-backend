@@ -9,7 +9,7 @@ let config = {
     storageBucket: "muslim-quiz-dev.appspot.com",
     messagingSenderId: "7170887849"
 };
-const serviceAccountKeyPath = '/Users/aminbenarieb/Repo/muslim-quiz-backend/functions/test/muslim-quiz-dev-56eb0ebec919.json';
+const serviceAccountKeyPath = `${__dirname}/muslim-quiz-dev-56eb0ebec919.json`;
 const test = require('firebase-functions-test')(config, serviceAccountKeyPath);
 
 describe('Cloud Functions', () => {
@@ -22,15 +22,12 @@ describe('Cloud Functions', () => {
         myFunctions = require('../src/index.ts');
 
         const db = admin.database();
+        let testJSON = require(`${__dirname}/test-database.json`);
+        db.ref('/').set(testJSON);
         const usersRef = db.ref('/users');
         userId = usersRef.push({email: 'foo@foo.foo', password: 'foo'}).key;
         partnerId = usersRef.push({email: 'bar@bar.bar', password: 'bar'}).key;
         console.log(`Created user ${userId} and partner ${partnerId}`);
-        const quizzesRef = db.ref('/quizzes');
-        const quizId =  quizzesRef.push({
-            'test_data': 'test_data'
-        });
-        console.log(`Created a quiz  ${quizId}.`);
     });
     after(() => {
         test.cleanup();
@@ -39,6 +36,7 @@ describe('Cloud Functions', () => {
         db.ref('games').remove();
         db.ref('rounds').remove();
         db.ref('quizzes').remove();
+        db.ref('topics').remove();
     });
 
     describe('auth', () => {
@@ -109,6 +107,27 @@ describe('Cloud Functions', () => {
             };
 
             myFunctions.start_dame(req, res);
+        });
+    });
+    describe('answer_quiz', () => {
+        it('Testing starting a game', (done) => {
+            const req = {query: {
+                    game_id: gameId,
+                    round_id: roundId,
+                    answer_id: 'test_answer1'}
+            };
+            const res = {
+                status: (code) => {
+                    assert.equal(code, 200);
+                    return res
+                },
+                json: (body) => {
+                    assert.isTrue(body.correct, "working now");
+                    done();
+                }
+            };
+
+            myFunctions.answer_quiz(req, res);
         });
     });
 

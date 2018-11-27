@@ -25,16 +25,16 @@ answers = quiz.questions.answers
 
 roundUserInfo = round.roundUserInfo
 roundUserInfo.quiz(quiz.id).answer = answer_id
-isCorrect = ifCorrect(answer_id, answers)
-roundUserInfo.score = calculateScore(...)
+isCorrect = ifCorrect(answer_id, answers) # two cases
+roundUserInfo.score = calculateScore(...) # separate score cases
 
 isQuestionLast = quiz.questions.last == quiz.id
 if (isQuestionLast)
-	roundUserInfo.endDate = Date()
+	roundUserInfo.endDate = Date() # enddate for last question
 
 isRoundLast = game.rounds.last == round_id
 if (partnetFinished && isRoundLast):
-	game.endDate = Date()
+	game.endDate = Date() # enddate for game
 
 
 ###########
