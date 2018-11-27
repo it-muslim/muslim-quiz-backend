@@ -1,73 +1,4 @@
-AUTH:
-###########
-/auth
-request body
-{
-    email
-    password
-}
-
-
-
 GAME:
-
-###########
-/invite_user_to_game
-header body
-{
-	auth-token:
-}
-request body
-{
-	user
-}
-
-initiator = request body -> user_id
-user_id = request body -> user_id
-
-game = dbStore.games.create_with_autoId
-game.user = initiator
-game.partner = user
-
-
-###########
-/accept_invitiation_to_game
-header body
-{
-	auth-token:
-}
-request body
-{
-	game_id
-}
-
-game_id = request body -> game_id
-
-game = dbStore.games(game_id)
-game.stardDate = Date()
-user1 = game.user
-user2 = game.partner
-game.roundes = generateRounds([user1, user2])
-
-
-###########
-/start_dame
-header body
-{
-	auth-token:
-}
-request body
-{
-	game_id
-	round_id
-}
-
-user_id = header body -> user_id
-round_id = request body -> round_id
-
-round = dbStore.rounds(round_id)
-round.users(user_id).startDate = Date()
-// schedule a callback on round time expiration?
 
 ###########
 /answer_quiz
@@ -146,21 +77,8 @@ games = dbStore.games.filted(intiator, completed)
 
 
 ROUND:
-
-generateRounds(users):
-	for i in 0..roundCount:
-		round = dbStore.rounds.create_with_autoId
-		excluded_quizes = users.map { return user.quiz }
-		round.quiz = generateQuiz(excluded_quizes)
-		round.users.add(users)
-
-generateQuiz(excluded_quizes)
-	quizes = dbStore.quizes.get_random(excluded_quizes)
-
-
 isCorrect = ifCorrect(answer_id, answers):
 	return answers.first.id == answer_id
 
 calculateScore(...):
-
 partnetFinished(...)

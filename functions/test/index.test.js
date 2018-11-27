@@ -11,45 +11,104 @@ let config = {
 };
 const serviceAccountKeyPath = '/Users/aminbenarieb/Repo/muslim-quiz-backend/functions/test/muslim-quiz-dev-56eb0ebec919.json';
 const test = require('firebase-functions-test')(config, serviceAccountKeyPath);
-test.mockConfig({ stripe: { key: '23wr42ewr34' }}); // Mock functions config values
-
 
 describe('Cloud Functions', () => {
     let myFunctions;
+    let userId, partnerId;
+    let gameId;
+    let roundId;
 
     before(() => {
-        // Require index.js and save the exports inside a namespace called myFunctions.
-        // This includes our cloud functions, which can now be accessed at myFunctions.makeUppercase
-        // and myFunctions.addMessage
         myFunctions = require('../src/index.ts');
-    });
 
+        const db = admin.database();
+        const usersRef = db.ref('/users');
+        userId = usersRef.push({email: 'foo@foo.foo', password: 'foo'}).key;
+        partnerId = usersRef.push({email: 'bar@bar.bar', password: 'bar'}).key;
+        console.log(`Created user ${userId} and partner ${partnerId}`);
+        const quizzesRef = db.ref('/quizzes');
+        const quizId =  quizzesRef.push({
+            'test_data': 'test_data'
+        });
+        console.log(`Created a quiz  ${quizId}.`);
+    });
     after(() => {
-        // Do cleanup tasks.
         test.cleanup();
-        // Reset the database.
-        admin.database().ref('users').remove();
+        const db = admin.database();
+        db.ref('users').remove();
+        db.ref('games').remove();
+        db.ref('rounds').remove();
+        db.ref('quizzes').remove();
     });
 
     describe('auth', () => {
-        it('should return a 303 redirect', (done) => {
-            // A fake request object, with req.query.text set to 'input'
+        it('Testing auth', (done) => {
             const req = { query: {email: 'foo@foo.foo', password: 'foo'} };
-            // A fake response object, with a stubbed redirect function which does some assertions
             const res = {
                 redirect: (code, url) => {
-                    // Assert code is 303
                     assert.equal(code, 303);
-                    // If the database push is successful, then the URL sent back will have the following format:
                     const expectedRef = new RegExp(config.databaseURL + '/users/');
                     assert.isTrue(expectedRef.test(url));
                     done();
                 }
             };
 
-            // Invoke addMessage with our fake request and response objects. This will cause the
-            // assertions in the response object to be evaluated.
             myFunctions.auth(req, res);
+        });
+    });
+    describe('invite_user_to_game', () => {
+        it('Testing invitation to game', (done) => {
+            const req = { query: {user_id: userId, partner_id: partnerId} };
+            const res = {
+                status: (code) => {
+                    assert.equal(code, 200);
+                    return res
+                },
+                json: (body) => {
+                    gameId = body.key;
+                    roundId = body.game.rounds[0];
+                    assert.isDefined(gameId, "gameId is not defined!");
+                    assert.isDefined(roundId, "game first roundId is not defined!");
+                    done();
+                }
+            };
+
+            myFunctions.invite_user_to_game(req, res);
+        });
+    });
+    describe('accept_invitation_to_game', () => {
+        it('Testing accepting invitation to game', (done) => {
+            const req = {query: {game_id: gameId}};
+            const res = {
+                status: (code) => {
+                    assert.equal(code, 200);
+                    return res
+                },
+                json: (body) => {
+                    assert.isDefined(body.game.startDate, "game startDate is not defined!");
+                    done();
+                }
+            };
+
+            myFunctions.accept_invitation_to_game(req, res);
+        });
+    });
+    describe('start_dame', () => {
+        it('Testing starting a game', (done) => {
+            const req = {query: {user_id: userId, round_id: roundId}};
+            const res = {
+                status: (code) => {
+                    assert.equal(code, 200);
+                    return res
+                },
+                json: (body) => {
+                    assert.isDefined(body.key, "round key is not defined!");
+                    assert.isDefined(body.round.startDate, "round startDate is not defined!");
+                    done();
+                }
+            };
+
+            myFunctions.start_dame(req, res);
         });
     });
 
