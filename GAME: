@@ -2,23 +2,7 @@ GAME:
 
 ###########
 /answer_quiz
-header body
-{
-	auth-token:
-}
-request body
-{
-	game_id
-	round_id
-	answer_id
-}
 
-game_id = request body -> user_id
-round_id = request body -> round_id
-answer_id = request body -> answer_id
-
-game = dbStore.games(game_id)
-round = dbStore.rounds(round_id)
 
 quiz = round.quiz
 answers = quiz.questions.answers

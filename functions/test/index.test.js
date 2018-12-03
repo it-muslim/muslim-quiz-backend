@@ -22,6 +22,12 @@ describe('Cloud Functions', () => {
         myFunctions = require('../src/index.ts');
 
         const db = admin.database();
+        db.ref('users').remove();
+        db.ref('games').remove();
+        db.ref('rounds').remove();
+        db.ref('quizzes').remove();
+        db.ref('topics').remove();
+
         let testJSON = require(`${__dirname}/test-database.json`);
         db.ref('/').set(testJSON);
         const usersRef = db.ref('/users');
@@ -31,12 +37,6 @@ describe('Cloud Functions', () => {
     });
     after(() => {
         test.cleanup();
-        const db = admin.database();
-        db.ref('users').remove();
-        db.ref('games').remove();
-        db.ref('rounds').remove();
-        db.ref('quizzes').remove();
-        db.ref('topics').remove();
     });
 
     describe('auth', () => {
@@ -100,8 +100,7 @@ describe('Cloud Functions', () => {
                     return res
                 },
                 json: (body) => {
-                    assert.isDefined(body.key, "round key is not defined!");
-                    assert.isDefined(body.round.startDate, "round startDate is not defined!");
+                    assert.isDefined(body.startDate, "round startDate is not defined!");
                     done();
                 }
             };
@@ -111,10 +110,13 @@ describe('Cloud Functions', () => {
     });
     describe('answer_quiz', () => {
         it('Testing starting a game', (done) => {
-            const req = {query: {
-                    game_id: gameId,
-                    round_id: roundId,
-                    answer_id: 'test_answer1'}
+            const req = {query:
+                    {
+                        user_id: userId,
+                        game_id: gameId,
+                        round_id: roundId,
+                        answer_id: 'test_answer1'
+                    }
             };
             const res = {
                 status: (code) => {

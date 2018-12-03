@@ -4,11 +4,8 @@
     <list default="true" id="14ec1674-6ca2-438b-b723-0f8c592e2b16" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GAME:" beforeDir="false" afterPath="$PROJECT_DIR$/GAME:" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/functions/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/functions/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/functions/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/functions/test/index.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/test/index.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -23,7 +20,56 @@
     <favorites_list name="muslim-quiz-backend" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <splitter split-orientation="horizontal" split-proportion="0.5243129">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/functions/src/index.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="382">
+                  <caret line="45" column="49" selection-start-line="45" selection-start-column="49" selection-end-line="45" selection-end-column="49" />
+                  <folding>
+                    <element signature="n#!!block;n#generateQuiz#0" />
+                    <element signature="e#992#1252#0" />
+                    <element signature="e#2042#2430#0" />
+                    <element signature="e#2495#2982#0" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/functions/test/index.test.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="200">
+                  <caret line="66" column="46" selection-start-line="66" selection-start-column="46" selection-end-line="66" selection-end-column="46" />
+                  <folding>
+                    <element signature="e#112#400#0" />
+                    <element signature="e#698#1342#0" />
+                    <element signature="e#1423#1915#0" />
+                    <element signature="e#2715#3256#0" />
+                    <element signature="e#3292#3903#0" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/GAME:">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="253">
+                  <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -46,8 +92,8 @@
       <list>
         <option value="$PROJECT_DIR$/functions/src/test/index.test.js" />
         <option value="$PROJECT_DIR$/functions/package.json" />
-        <option value="$PROJECT_DIR$/functions/test/index.test.js" />
         <option value="$PROJECT_DIR$/GAME:" />
+        <option value="$PROJECT_DIR$/functions/test/index.test.js" />
         <option value="$PROJECT_DIR$/functions/src/index.ts" />
       </list>
     </option>
@@ -60,25 +106,7 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="muslim-quiz-backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="muslim-quiz-backend" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="muslim-quiz-backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="muslim-quiz-backend" type="462c0819:PsiDirectoryNode" />
-              <item name="functions" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -86,6 +114,7 @@
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="$PROJECT_DIR$/functions/node_modules/tslint" />
+    <property name="nodejs.mocha.mocha_node_package_dir" value="$PROJECT_DIR$/functions/node_modules/mocha" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/functions/node_modules/typescript/lib" />
   </component>
@@ -110,6 +139,30 @@
       </list>
     </option>
   </component>
+  <component name="RunManager">
+    <configuration name="Cloud Functions.start_dame.Testing starting a game" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <mocha-package>$PROJECT_DIR$/functions/node_modules/mocha</mocha-package>
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>TEST</test-kind>
+      <test-file>$PROJECT_DIR$/functions/test/index.test.js</test-file>
+      <test-names>
+        <name value="Cloud Functions" />
+        <name value="start_dame" />
+        <name value="Testing starting a game" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Mocha.Cloud Functions.start_dame.Testing starting a game" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -123,11 +176,18 @@
       <workItem from="1543096747679" duration="890000" />
       <workItem from="1543127568566" duration="8611000" />
       <workItem from="1543247826212" duration="15785000" />
+      <workItem from="1543518231041" duration="2097000" />
+      <workItem from="1543869941801" duration="3964000" />
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="Cloud_Functions_start_dame_Testing_starting_a_game - 2018.12.03 at 23h 46m 31s.xml">
+      <configuration name="Cloud Functions.start_dame.Testing starting a game" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+  </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30206000" />
+    <option name="totallyTimeSpent" value="36272000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -140,13 +200,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4963145" weight="0.32980973" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.5036855" side_tool="true" weight="0.32980973" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32923833" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -154,7 +215,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="9" weight="0.32991204" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32923833" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.2800983" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.32844576" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -204,31 +265,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GAME:">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="253">
+          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/functions/test/index.test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-131">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        <state relative-caret-position="200">
+          <caret line="66" column="46" selection-start-line="66" selection-start-column="46" selection-end-line="66" selection-end-column="46" />
           <folding>
-            <element signature="e#1265#1757#0" />
-            <element signature="e#2131#2636#0" />
-            <element signature="e#2708#3212#0" />
-            <element signature="e#3419#3938#0" />
+            <element signature="e#112#400#0" />
+            <element signature="e#698#1342#0" />
+            <element signature="e#1423#1915#0" />
+            <element signature="e#2715#3256#0" />
+            <element signature="e#3292#3903#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/functions/src/index.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="16" column="75" lean-forward="true" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="75" />
+        <state relative-caret-position="382">
+          <caret line="45" column="49" selection-start-line="45" selection-start-column="49" selection-end-line="45" selection-end-column="49" />
           <folding>
-            <element signature="e#198#458#0" />
-            <element signature="e#1845#2254#0" />
+            <element signature="n#!!block;n#generateQuiz#0" />
+            <element signature="e#992#1252#0" />
+            <element signature="e#2042#2430#0" />
+            <element signature="e#2495#2982#0" />
           </folding>
         </state>
       </provider>

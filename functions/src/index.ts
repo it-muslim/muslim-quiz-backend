@@ -6,9 +6,10 @@ const db = admin.database();
 function generateQuiz() {
     const topicsRef = db.ref('/topics');
     return topicsRef.once('value').then( (snapshot) => {
-        const numberOfQuizzes = snapshot.numChildren();
-        const randomIndex = Math.floor(Math.random() * numberOfQuizzes);
-        return snapshot.val()[randomIndex]
+        const topics = snapshot.val();
+        const keys = Object.keys(topics);
+        const randomKey = keys[keys.length * Math.random() << 0];
+        return topicsRef.key;
     })
 }
 function generateRounds(users) {
@@ -16,7 +17,10 @@ function generateRounds(users) {
     for (let i = 0; i < kRoundCount; i++) {
         const quiz = generateQuiz(); //TODO: exclude already passed quizzes
         const roundRef = db.ref('/rounds').push({
-            users: users,
+            users: users.reduce((result, userId) => {
+                result[userId] = {score: 0};
+                return result;
+            }, {}),
             quiz: quiz
         });
         roundRefs.push(roundRef.key)
@@ -41,6 +45,11 @@ exports.invite_user_to_game = functions.https.onRequest((req, res) => {
         partner_id: partnerId,
         rounds: generateRounds([userId, partnerId])
     }).then((snapshot) => {
+
+        // random selection n topics from /topics
+        // then mapping each topic into round with setter in quiz
+        // then set rounds to a game
+
         return snapshot.ref.once("value").then(function(gameSnapshot) {
             const key = gameSnapshot.key;
             const gameJSON = gameSnapshot.toJSON();
@@ -54,7 +63,7 @@ exports.invite_user_to_game = functions.https.onRequest((req, res) => {
 exports.accept_invitation_to_game = functions.https.onRequest((req, res) => {
     const gameId = req.query.game_id;
     const gameRef = db.ref(`games/${ gameId }`);
-    return gameRef.child('startDate').set(admin.database.ServerValue.TIMESTAMP).then( () => {
+    return gameRef.set({'startDate' : admin.database.ServerValue.TIMESTAMP}).then( () => {
         return gameRef.once('value');
     }).then((snapshot) => {
              const gameJSON = snapshot.toJSON();
@@ -65,19 +74,29 @@ exports.accept_invitation_to_game = functions.https.onRequest((req, res) => {
 exports.start_dame = functions.https.onRequest((req, res) => {
     const userId = req.query.user_id;
     const roundId = req.query.round_id;
-    const roundRef = db.ref(`rounds/${ roundId }/users/${userId}`);
-    return roundRef.child('startDate').set(admin.database.ServerValue.TIMESTAMP).then( () => {
+    const startDateRef = db.ref(`rounds/${ roundId }/users/${userId}/startDate`);
+    return startDateRef.set(admin.database.ServerValue.TIMESTAMP).then( () => {
         //TODO: schedule a callback on round time expiration
-        return roundRef.once('value');
+        return startDateRef.once('value');
     }).then((snapshot) => {
-        const roundJSON = snapshot.toJSON();
-        return res.status(200).json({ key: snapshot.key, round: roundJSON });
+        const startDate = snapshot.val();
+        return res.status(200).json({ startDate: startDate });
     })
 });
 
 exports.answer_quiz = functions.https.onRequest((req, res) => {
-    // const userId = req.query.user_id;
-    // const roundId = req.query.round_id;
-    // const answerId = req.query.answer_id;
+    const userId = req.query.user_id;
+    const gameId = req.query.game_id;
+    const roundId = req.query.round_id;
+    const answerId = req.query.answer_id;
+
+    const userRef = db.ref(`rounds/${roundId}/users/${userId}`);
+    const gameRef = db.ref(`games/${ gameId }`);
+    const roundRef = db.ref(`rounds/${ roundId }`);
+    const topicRef = db.ref(`topics/${ roundId }`);
+
+    // answer_id is correct?
+    //
+
     return res.status(200).json({ correct: true });
 });
