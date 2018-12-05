@@ -3,29 +3,15 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin'); admin.initializeApp();
 const db = admin.database();
 
-function generateQuiz() {
-    const topicsRef = db.ref('/topics');
-    return topicsRef.once('value').then( (snapshot) => {
-        const topics = snapshot.val();
-        const keys = Object.keys(topics);
-        const randomKey = keys[keys.length * Math.random() << 0];
-        return topicsRef.key;
-    })
+function isAnswerCorrect(answerId, questionId, topic) {
+    const question = topic.questions[questionId];
+    const answers = Object.keys(question.answers);
+    const rightAnswerId = answers[0];
+    return rightAnswerId === answerId;
 }
-function generateRounds(users) {
-    const roundRefs = [];
-    for (let i = 0; i < kRoundCount; i++) {
-        const quiz = generateQuiz(); //TODO: exclude already passed quizzes
-        const roundRef = db.ref('/rounds').push({
-            users: users.reduce((result, userId) => {
-                result[userId] = {score: 0};
-                return result;
-            }, {}),
-            quiz: quiz
-        });
-        roundRefs.push(roundRef.key)
-    }
-    return roundRefs;
+
+function calculateScore(user, score, answerWasCorrect) {
+    return score + (10 * (answerWasCorrect ? 1 : -1))
 }
 
 exports.auth = functions.https.onRequest((req, res) => {
@@ -42,20 +28,37 @@ exports.invite_user_to_game = functions.https.onRequest((req, res) => {
 
     return db.ref('games').push({
         user_id: userId,
-        partner_id: partnerId,
-        rounds: generateRounds([userId, partnerId])
-    }).then((snapshot) => {
-
-        // random selection n topics from /topics
-        // then mapping each topic into round with setter in quiz
-        // then set rounds to a game
-
-        return snapshot.ref.once("value").then(function(gameSnapshot) {
-            const key = gameSnapshot.key;
-            const gameJSON = gameSnapshot.toJSON();
-            return res.status(200).json({
-                key: key,
-                game: gameJSON });
+        partner_id: partnerId
+    }).then((gameReference) => {
+        const topicsRef = db.ref('/topics');
+        return topicsRef.once('value').then( (topicsSnapshot) => {
+            const topics = topicsSnapshot.val();
+            const keys = Object.keys(topics);
+            return keys
+                .sort( function() { return 0.5 - Math.random() } )
+                .slice(0, kRoundCount);
+            //TODO: exclude already passed quizzes
+        }).then( (topicKeys) => {
+            const usersDict = [userId, partnerId].reduce((result, id) => {
+                result[id] = {score: 0};
+                return result;
+            }, {});
+            return topicKeys.map(function(topicKey) {
+                return db.ref('/rounds').push({
+                    users: usersDict,
+                    quiz: topicKey
+                }).key;
+            })
+        }).then((roundRefs) => {
+            return gameReference.child('rounds').set(roundRefs).then((roundReference) => {
+                return gameReference.once("value").then(function(gameSnapshot) {
+                    const key = gameSnapshot.key;
+                    const gameJSON = gameSnapshot.toJSON();
+                    return res.status(200).json({
+                        key: key,
+                        game: gameJSON});
+                });
+            })
         });
     });
 });
@@ -63,7 +66,7 @@ exports.invite_user_to_game = functions.https.onRequest((req, res) => {
 exports.accept_invitation_to_game = functions.https.onRequest((req, res) => {
     const gameId = req.query.game_id;
     const gameRef = db.ref(`games/${ gameId }`);
-    return gameRef.set({'startDate' : admin.database.ServerValue.TIMESTAMP}).then( () => {
+    return gameRef.child('startDate').set(admin.database.ServerValue.TIMESTAMP).then( () => {
         return gameRef.once('value');
     }).then((snapshot) => {
              const gameJSON = snapshot.toJSON();
@@ -86,17 +89,48 @@ exports.start_dame = functions.https.onRequest((req, res) => {
 
 exports.answer_quiz = functions.https.onRequest((req, res) => {
     const userId = req.query.user_id;
-    const gameId = req.query.game_id;
     const roundId = req.query.round_id;
     const answerId = req.query.answer_id;
+    const questionId = req.query.question_id;
 
     const userRef = db.ref(`rounds/${roundId}/users/${userId}`);
-    const gameRef = db.ref(`games/${ gameId }`);
     const roundRef = db.ref(`rounds/${ roundId }`);
-    const topicRef = db.ref(`topics/${ roundId }`);
+    const scoreRef = roundRef.child(`users/${userId}/score`);
 
-    // answer_id is correct?
-    //
+    let score = undefined;
+    let answerWasCorrect = undefined;
 
-    return res.status(200).json({ correct: true });
+    // 1. saving user answer for round
+    roundRef.child(`users/${userId}/answer`).set(answerId)
+        .then(() => {
+            // 2. Checking answer
+            return roundRef.child('quiz').once('value')
+        })
+        .then((quizIdSnapshot) => {
+            const topicId = quizIdSnapshot.val();
+            return db.ref(`topics/${ topicId }`).once('value')
+        })
+        .then((topicSnapshot) => {
+            const topic = topicSnapshot.toJSON();
+            answerWasCorrect = isAnswerCorrect(answerId, questionId, topic);
+
+            // 3. Calculating score
+            return scoreRef.once('value')
+        })
+        .then((scoreSnapshot) => {
+            score = scoreSnapshot.val();
+            return userRef.once('value')
+        })
+        .then((userSnapshot) => {
+            const user = userSnapshot.toJSON();
+            const newScore = calculateScore(user, score, answerWasCorrect);
+            return scoreRef.set(newScore);
+        })
+        .then(() => {
+            res.status(200).json({ correct: true });
+        })
+        .catch((error) => {
+            console.log(error);
+            res.status(500).send(error);
+        });
 });

@@ -113,8 +113,8 @@ describe('Cloud Functions', () => {
             const req = {query:
                     {
                         user_id: userId,
-                        game_id: gameId,
                         round_id: roundId,
+                        question_id: 'test_question1',
                         answer_id: 'test_answer1'
                     }
             };
@@ -124,6 +124,9 @@ describe('Cloud Functions', () => {
                     return res
                 },
                 json: (body) => {
+                    // users/${userId}/answer is not null
+                    // score was increased
+                    // score was decreased
                     assert.isTrue(body.correct, "working now");
                     done();
                 }
