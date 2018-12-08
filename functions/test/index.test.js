@@ -109,7 +109,7 @@ describe('Cloud Functions', () => {
         });
     });
     describe('answer_quiz', () => {
-        it('Testing starting a game', (done) => {
+        it('Testing correct answer', (done) => {
             const req = {query:
                     {
                         user_id: userId,
@@ -124,10 +124,33 @@ describe('Cloud Functions', () => {
                     return res
                 },
                 json: (body) => {
-                    // users/${userId}/answer is not null
-                    // score was increased
-                    // score was decreased
-                    assert.isTrue(body.correct, "working now");
+                    assert.isTrue(body.correct);
+                    assert.equal(body.score, 10);
+                    done();
+                }
+            };
+
+            myFunctions.answer_quiz(req, res);
+        });
+    });
+    describe('answer_quiz', () => {
+        it('Testing incorrect answer', (done) => {
+            const req = {query:
+                    {
+                        user_id: userId,
+                        round_id: roundId,
+                        question_id: 'test_question1',
+                        answer_id: 'test_answer2'
+                    }
+            };
+            const res = {
+                status: (code) => {
+                    assert.equal(code, 200);
+                    return res
+                },
+                json: (body) => {
+                    assert.isFalse(body.correct);
+                    assert.equal(body.score, 0);
                     done();
                 }
             };

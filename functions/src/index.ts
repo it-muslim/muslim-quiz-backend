@@ -98,6 +98,7 @@ exports.answer_quiz = functions.https.onRequest((req, res) => {
     const scoreRef = roundRef.child(`users/${userId}/score`);
 
     let score = undefined;
+    let newScore = undefined;
     let answerWasCorrect = undefined;
 
     // 1. saving user answer for round
@@ -123,11 +124,11 @@ exports.answer_quiz = functions.https.onRequest((req, res) => {
         })
         .then((userSnapshot) => {
             const user = userSnapshot.toJSON();
-            const newScore = calculateScore(user, score, answerWasCorrect);
+            newScore = calculateScore(user, score, answerWasCorrect);
             return scoreRef.set(newScore);
         })
         .then(() => {
-            res.status(200).json({ correct: true });
+            res.status(200).json({ correct: answerWasCorrect, score: newScore });
         })
         .catch((error) => {
             console.log(error);
