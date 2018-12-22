@@ -22,11 +22,13 @@ describe('Cloud Functions', () => {
         myFunctions = require('../src/index.ts');
 
         const db = admin.database();
-        db.ref('users').remove();
         db.ref('games').remove();
         db.ref('rounds').remove();
-        db.ref('quizzes').remove();
         db.ref('topics').remove();
+        db.ref('questions').remove();
+        db.ref('users').remove();
+        db.ref('round_statuses').remove();
+        db.ref('game_statuses').remove();
 
         let testJSON = require(`${__dirname}/test-database.json`);
         db.ref('/').set(testJSON);
@@ -54,9 +56,9 @@ describe('Cloud Functions', () => {
             myFunctions.auth(req, res);
         });
     });
-    describe('invite_user_to_game', () => {
+    describe('invite_users_to_game', () => {
         it('Testing invitation to game', (done) => {
-            const req = { query: {user_id: userId, partner_id: partnerId} };
+            const req = { query: {initiator: userId, users: [partnerId]} };
             const res = {
                 status: (code) => {
                     assert.equal(code, 200);
@@ -64,14 +66,14 @@ describe('Cloud Functions', () => {
                 },
                 json: (body) => {
                     gameId = body.key;
-                    roundId = body.game.rounds[0];
+                    status = body.game.status;
                     assert.isDefined(gameId, "gameId is not defined!");
-                    assert.isDefined(roundId, "game first roundId is not defined!");
+                    assert.equal(status, "waiting", "wrong game status");
                     done();
                 }
             };
 
-            myFunctions.invite_user_to_game(req, res);
+            myFunctions.invite_users_to_game(req, res);
         });
     });
     describe('accept_invitation_to_game', () => {
@@ -83,7 +85,9 @@ describe('Cloud Functions', () => {
                     return res
                 },
                 json: (body) => {
+                    roundId = body.game.rounds[0];
                     assert.isDefined(body.game.startDate, "game startDate is not defined!");
+                    assert.isDefined(roundId, "game first roundId is not defined!");
                     done();
                 }
             };

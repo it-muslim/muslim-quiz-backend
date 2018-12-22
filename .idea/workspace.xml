@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="14ec1674-6ca2-438b-b723-0f8c592e2b16" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/GAME:" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/test/test-database.json" beforeDir="false" afterPath="$PROJECT_DIR$/functions/test/test-database.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/test/index.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/test/index.test.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -18,14 +19,30 @@
     <favorites_list name="muslim-quiz-backend" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.30855018">
+    <splitter split-orientation="horizontal" split-proportion="0.47568712">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/functions/src/index.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="363">
-                  <caret line="131" column="10" selection-start-line="131" selection-start-column="10" selection-end-line="131" selection-end-column="10" />
+                <state relative-caret-position="506">
+                  <caret line="111" column="42" selection-start-line="111" selection-start-column="42" selection-end-line="111" selection-end-column="42" />
+                  <folding>
+                    <element signature="n#!!block;n#isAnswerCorrect#0" />
+                    <element signature="n#!!block;n#calculateScore#0" />
+                    <element signature="e#572#832#0" />
+                    <element signature="e#750#824#0" />
+                    <element signature="e#906#2631#0" />
+                    <element signature="e#1655#3729#0" />
+                    <element signature="e#3528#5169#0" />
+                    <element signature="e#4091#4192#0" />
+                    <element signature="e#4228#4352#0" />
+                    <element signature="e#4387#4604#0" />
+                    <element signature="e#4639#4732#0" />
+                    <element signature="e#4766#4938#0" />
+                    <element signature="e#4960#5053#0" />
+                    <element signature="e#5081#5165#0" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -37,14 +54,16 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/functions/test/index.test.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="133">
-                  <caret line="23" column="36" lean-forward="true" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+                <state relative-caret-position="541">
+                  <caret line="114" column="34" selection-start-line="114" selection-start-column="34" selection-end-line="114" selection-end-column="34" />
                   <folding>
-                    <element signature="e#112#400#0" />
+                    <element signature="e#698#1342#0" />
                     <element signature="e#1423#1915#0" />
-                    <element signature="e#1960#2664#0" />
+                    <element signature="e#2048#2883#0" />
                     <element signature="e#2715#3256#0" />
-                    <element signature="e#3292#3820#0" />
+                    <element signature="e#3647#4175#0" />
+                    <element signature="e#3857#4604#0" />
+                    <element signature="e#4641#5390#0" />
                   </folding>
                 </state>
               </provider>
@@ -68,6 +87,8 @@
       <find>map</find>
       <find>reduce</find>
       <find>invite_user_to_game</find>
+      <find>each</find>
+      <find>for</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -79,14 +100,14 @@
         <option value="$PROJECT_DIR$/functions/src/test/index.test.js" />
         <option value="$PROJECT_DIR$/functions/package.json" />
         <option value="$PROJECT_DIR$/GAME:" />
-        <option value="$PROJECT_DIR$/functions/src/index.ts" />
         <option value="$PROJECT_DIR$/functions/test/index.test.js" />
+        <option value="$PROJECT_DIR$/functions/src/index.ts" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1366" />
-    <option name="height" value="768" />
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -102,6 +123,7 @@
     <property name="node.js.selected.package.tslint" value="$PROJECT_DIR$/functions/node_modules/tslint" />
     <property name="nodejs.mocha.mocha_node_package_dir" value="$PROJECT_DIR$/functions/node_modules/mocha" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/functions/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
@@ -125,7 +147,38 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Mocha.Cloud Functions.answer_quiz">
+  <component name="RunManager" selected="Mocha.Cloud Functions">
+    <configuration name="Cloud Functions" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <mocha-package>$PROJECT_DIR$/functions/node_modules/mocha</mocha-package>
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>SUITE</test-kind>
+      <test-file>$PROJECT_DIR$/functions/test/index.test.js</test-file>
+      <test-names>
+        <name value="Cloud Functions" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Cloud Functions.accept_invitation_to_game" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <mocha-package>$PROJECT_DIR$/functions/node_modules/mocha</mocha-package>
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>SUITE</test-kind>
+      <test-file>$PROJECT_DIR$/functions/test/index.test.js</test-file>
+      <test-names>
+        <name value="Cloud Functions" />
+        <name value="accept_invitation_to_game" />
+      </test-names>
+      <method v="2" />
+    </configuration>
     <configuration name="Cloud Functions.answer_quiz" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
       <node-interpreter>project</node-interpreter>
       <node-options />
@@ -142,7 +195,23 @@
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="Cloud Functions.start_dame.Testing starting a game" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
+    <configuration name="Cloud Functions.invite_users_to_game" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <mocha-package>$PROJECT_DIR$/functions/node_modules/mocha</mocha-package>
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>SUITE</test-kind>
+      <test-file>$PROJECT_DIR$/functions/test/index.test.js</test-file>
+      <test-names>
+        <name value="Cloud Functions" />
+        <name value="invite_users_to_game" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Cloud Functions.invite_users_to_game.Testing invitation to game" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
       <node-interpreter>project</node-interpreter>
       <node-options />
       <mocha-package>$PROJECT_DIR$/functions/node_modules/mocha</mocha-package>
@@ -154,15 +223,18 @@
       <test-file>$PROJECT_DIR$/functions/test/index.test.js</test-file>
       <test-names>
         <name value="Cloud Functions" />
-        <name value="start_dame" />
-        <name value="Testing starting a game" />
+        <name value="invite_users_to_game" />
+        <name value="Testing invitation to game" />
       </test-names>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Mocha.Cloud Functions.invite_users_to_game" />
+        <item itemvalue="Mocha.Cloud Functions" />
+        <item itemvalue="Mocha.Cloud Functions.accept_invitation_to_game" />
+        <item itemvalue="Mocha.Cloud Functions.invite_users_to_game.Testing invitation to game" />
         <item itemvalue="Mocha.Cloud Functions.answer_quiz" />
-        <item itemvalue="Mocha.Cloud Functions.start_dame.Testing starting a game" />
       </list>
     </recent_temporary>
   </component>
@@ -185,22 +257,44 @@
       <workItem from="1543955949113" duration="2283000" />
       <workItem from="1544032378698" duration="4726000" />
       <workItem from="1545164728720" duration="1201000" />
+      <workItem from="1545486679917" duration="4340000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Cloud_Functions_start_dame_Testing_starting_a_game - 2018.12.03 at 23h 46m 31s.xml">
-      <configuration name="Cloud Functions.start_dame.Testing starting a game" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Cloud_Functions_invite_users_to_game - 2018.12.22 at 17h 36m 58s.xml">
+      <configuration name="Cloud Functions.invite_users_to_game" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="Cloud_Functions_answer_quiz - 2018.12.05 at 22h 07m 27s.xml">
-      <configuration name="Cloud Functions.answer_quiz" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Cloud_Functions_invite_users_to_game - 2018.12.22 at 17h 37m 00s.xml">
+      <configuration name="Cloud Functions.invite_users_to_game" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="Cloud_Functions_answer_quiz - 2018.12.05 at 22h 13m 03s.xml">
-      <configuration name="Cloud Functions.answer_quiz" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Cloud_Functions_invite_users_to_game_Testing_invitation_to_game - 2018.12.22 at 17h 37m 31s.xml">
+      <configuration name="Cloud Functions.invite_users_to_game.Testing invitation to game" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Cloud_Functions_invite_users_to_game - 2018.12.22 at 17h 38m 53s.xml">
+      <configuration name="Cloud Functions.invite_users_to_game" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Cloud_Functions_invite_users_to_game - 2018.12.22 at 17h 38m 55s.xml">
+      <configuration name="Cloud Functions.invite_users_to_game" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Cloud_Functions_invite_users_to_game - 2018.12.22 at 17h 46m 07s.xml">
+      <configuration name="Cloud Functions.invite_users_to_game" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Cloud_Functions_accept_invitation_to_game - 2018.12.22 at 18h 01m 13s.xml">
+      <configuration name="Cloud Functions.accept_invitation_to_game" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Cloud_Functions_invite_users_to_game - 2018.12.22 at 18h 02m 06s.xml">
+      <configuration name="Cloud Functions.invite_users_to_game" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Cloud_Functions_accept_invitation_to_game - 2018.12.22 at 18h 02m 16s.xml">
+      <configuration name="Cloud Functions.accept_invitation_to_game" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Cloud_Functions - 2018.12.22 at 18h 03m 49s.xml">
+      <configuration name="Cloud Functions" configurationId="mocha-javascript-test-runner" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47311000" />
+    <option name="totallyTimeSpent" value="51651000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -212,15 +306,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1366" height="768" extended-state="0" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4963145" weight="0.32980973" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.5036855" side_tool="true" weight="0.32980973" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32821724" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3280098" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3992629" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32991204" />
@@ -304,23 +399,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/functions/src/index.ts">
+    <entry file="file://$PROJECT_DIR$/functions/test/index.test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="131" column="10" selection-start-line="131" selection-start-column="10" selection-end-line="131" selection-end-column="10" />
+        <state relative-caret-position="541">
+          <caret line="114" column="34" selection-start-line="114" selection-start-column="34" selection-end-line="114" selection-end-column="34" />
+          <folding>
+            <element signature="e#698#1342#0" />
+            <element signature="e#1423#1915#0" />
+            <element signature="e#2048#2883#0" />
+            <element signature="e#2715#3256#0" />
+            <element signature="e#3647#4175#0" />
+            <element signature="e#3857#4604#0" />
+            <element signature="e#4641#5390#0" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/functions/test/index.test.js">
+    <entry file="file://$PROJECT_DIR$/functions/src/index.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="23" column="36" lean-forward="true" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+        <state relative-caret-position="506">
+          <caret line="111" column="42" selection-start-line="111" selection-start-column="42" selection-end-line="111" selection-end-column="42" />
           <folding>
-            <element signature="e#112#400#0" />
-            <element signature="e#1423#1915#0" />
-            <element signature="e#1960#2664#0" />
-            <element signature="e#2715#3256#0" />
-            <element signature="e#3292#3820#0" />
+            <element signature="n#!!block;n#isAnswerCorrect#0" />
+            <element signature="n#!!block;n#calculateScore#0" />
+            <element signature="e#572#832#0" />
+            <element signature="e#750#824#0" />
+            <element signature="e#906#2631#0" />
+            <element signature="e#1655#3729#0" />
+            <element signature="e#3528#5169#0" />
+            <element signature="e#4091#4192#0" />
+            <element signature="e#4228#4352#0" />
+            <element signature="e#4387#4604#0" />
+            <element signature="e#4639#4732#0" />
+            <element signature="e#4766#4938#0" />
+            <element signature="e#4960#5053#0" />
+            <element signature="e#5081#5165#0" />
           </folding>
         </state>
       </provider>

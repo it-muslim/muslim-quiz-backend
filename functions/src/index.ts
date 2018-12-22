@@ -22,56 +22,83 @@ exports.auth = functions.https.onRequest((req, res) => {
         });
     });
 
-exports.invite_user_to_game = functions.https.onRequest((req, res) => {
-    const userId = req.query.user_id; //TODO: Get current user
-    const partnerId = req.query.partner_id;
+exports.invite_users_to_game = functions.https.onRequest((req, res) => {
+    const initiator = req.query.initiator; //TODO: Get current user
+    const users = req.query.users;
 
-    return db.ref('games').push({
-        user_id: userId,
-        partner_id: partnerId
-    }).then((gameReference) => {
-        const topicsRef = db.ref('/topics');
-        return topicsRef.once('value').then( (topicsSnapshot) => {
-            const topics = topicsSnapshot.val();
-            const keys = Object.keys(topics);
-            return keys
-                .sort( function() { return 0.5 - Math.random() } )
-                .slice(0, kRoundCount);
-            //TODO: exclude already passed quizzes
-        }).then( (topicKeys) => {
-            const usersDict = [userId, partnerId].reduce((result, id) => {
-                result[id] = {score: 0};
-                return result;
-            }, {});
-            return topicKeys.map(function(topicKey) {
-                return db.ref('/rounds').push({
-                    users: usersDict,
-                    quiz: topicKey
-                }).key;
-            })
-        }).then((roundRefs) => {
-            return gameReference.child('rounds').set(roundRefs).then((roundReference) => {
-                return gameReference.once("value").then(function(gameSnapshot) {
-                    const key = gameSnapshot.key;
-                    const gameJSON = gameSnapshot.toJSON();
-                    return res.status(200).json({
-                        key: key,
-                        game: gameJSON});
-                });
-            })
-        });
-    });
+    const game = {
+        users: {
+            [initiator]: {
+                initiator: true,
+                score: 0
+            }
+        },
+        status: "waiting" //TODO: Avoid hardcoded identifiers
+    };
+    for (const userId of users) {
+        game.users[userId] = { score: 0 };
+    }
+
+    return db.ref('games').push(game).then((gameRef) => {
+        return gameRef.once('value').then((snapshot) => {
+            const gameJSON = snapshot.toJSON();
+            return res.status(200).json({ key: snapshot.key, game: gameJSON });
+        })
+    })
 });
 
 exports.accept_invitation_to_game = functions.https.onRequest((req, res) => {
     const gameId = req.query.game_id;
     const gameRef = db.ref(`games/${ gameId }`);
-    return gameRef.child('startDate').set(admin.database.ServerValue.TIMESTAMP).then( () => {
-        return gameRef.once('value');
-    }).then((snapshot) => {
-             const gameJSON = snapshot.toJSON();
-             return res.status(200).json({ key: snapshot.key, game: gameJSON });
+    let usersDict = null;
+    return gameRef.once('value')
+        .then((snapshot) => {
+            const gameJSON = snapshot.toJSON();
+            const usersIds = Object.keys(gameJSON.users);
+            usersDict = usersIds.reduce((result, id) => {
+                result[id] = {score: 0};
+                return result;
+            }, {});
+            return usersDict;
         })
+        .then(() => {
+            const topicsRef = db.ref('/topics');
+            return topicsRef.once('value')
+        })
+        .then( (topicsSnapshot) => {
+            const topics = topicsSnapshot.val();
+            const keys = Object.keys(topics);
+            return keys
+                .sort(function () {
+                    return 0.5 - Math.random()
+                })
+                .slice(0, kRoundCount);
+        })
+        .then( (topicKeys) => {
+            return topicKeys.map(function (topicKey) {
+                return db.ref('/rounds').push({
+                    game: gameRef.key,
+                    users: usersDict,
+                    topic: topicKey
+                }).key;
+            })
+        })
+        .then((roundRefs) => {
+            return gameRef.child('rounds').set(roundRefs)
+        })
+        .then(() => {
+            return gameRef.child('startDate').set(admin.database.ServerValue.TIMESTAMP)
+        })
+        .then(() => {
+            return gameRef.once("value");
+        })
+        .then(function(gameSnapshot) {
+            const key = gameSnapshot.key;
+            const gameJSON = gameSnapshot.toJSON();
+            return res.status(200).json({
+                key: key,
+                game: gameJSON});
+        });
 });
 
 exports.start_dame = functions.https.onRequest((req, res) => {
@@ -79,7 +106,6 @@ exports.start_dame = functions.https.onRequest((req, res) => {
     const roundId = req.query.round_id;
     const startDateRef = db.ref(`rounds/${ roundId }/users/${userId}/startDate`);
     return startDateRef.set(admin.database.ServerValue.TIMESTAMP).then( () => {
-        //TODO: schedule a callback on round time expiration
         return startDateRef.once('value');
     }).then((snapshot) => {
         const startDate = snapshot.val();
